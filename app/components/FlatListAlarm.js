@@ -99,7 +99,7 @@ const styles= StyleSheet.create({
     flatListAlarm:{
         flex:1,
         marginTop:22,
-        backgroundColor:'red'
+        backgroundColor:'green'
     },
     boderline:{
         height:1,
