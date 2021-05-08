@@ -11,6 +11,7 @@ export default class AddModal extends Component{
     constructor(props){
         super(props);
         this.myModal=React.createRef();
+        this.showAddModal=this.showAddModal.bind(this);
         this.state={
             hours:'',
             minutes:'',
@@ -76,6 +77,7 @@ export default class AddModal extends Component{
                                 backgroundColor:'mediumseagreen'
                             }}
                             onPress={()=>{
+
                                 if(this.state.hours.length==0||this.state.minutes.length==0||this.state.note.length==0){
                                     alert('You must fill all infomation');
                                     return;
@@ -86,8 +88,9 @@ export default class AddModal extends Component{
                                     note:this.state.note
                                 }
                                 flatListData.push(newAlarm);
+                                // alert(this.props.children)
                                 // flatListData= [...flatListData,newAlarm];
-                                // this.props.refreshFlatList(newAlarm.key);
+                                this.props.parentFlatList.refreshFlatList(newAlarm.key);
                                 // alert(newAlarm.key)
                                 this.myModal.current.close();
                             }}
