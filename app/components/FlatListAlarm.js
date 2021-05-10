@@ -121,7 +121,7 @@ class FlatListAlarm extends Component{
         this.state=({
             deleteRowKey:null
         })
-        // this._onPressAdd=this._onPressAdd.bind(this);
+        this._onPressAdd=this._onPressAdd.bind(this);
     }
     refreshFlatList =(activeKey)=>{
         this.setState((prevState)=>{
