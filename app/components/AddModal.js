@@ -3,9 +3,9 @@ import {AppRegistry,FlatList,Image,Text,View,StyleSheet, Switch, Alert, Touchabl
 
 import Modal from 'react-native-modalbox';
 import Button from 'react-native-button';
-
+// import fs from 'react-native-fs';
 import flatListData from '../data/FlatListData';
-
+import alarmJson from '../data/alarm.json';
 var screen = Dimensions.get('window');
 export default class AddModal extends Component{
     constructor(props){
@@ -47,7 +47,9 @@ export default class AddModal extends Component{
 
                         <View style={{flex:1,flexDirection:'row',backgroundColor:'orange',alignItems:'center'}}>
                             <TextInput  keyboardType={'numeric'} style={styles.timer}
-                                        onChangeText={(text)=>{this.setState({hours:text})}}
+                                        onChangeText={(text)=>{
+                                            this.setState({hours:text})
+                                        }}
                                         value={this.state.hours}
                             ></TextInput>
                             <Text>:</Text>
@@ -82,14 +84,25 @@ export default class AddModal extends Component{
                                     alert('You must fill all infomation');
                                     return;
                                 }
+                                if(this.state.hours.length>2||this.state.hours>24){
+                                    alert('Hour error!');
+                                    return;
+                                }
+                                if(this.state.minutes.length>2|| this.state.minutes>60){
+                                    alert('Minutes error!')
+                                    return;
+                                }
                                 const newAlarm={
                                     key:flatListData.length+1,
                                     time:this.state.hours+':'+this.state.minutes,
                                     note:this.state.note
                                 }
-                                flatListData.push(newAlarm);
-                                // alert(this.props.children)
-                                // flatListData= [...flatListData,newAlarm];
+                                alarmJson.push(newAlarm);
+                                // writefile json
+                            
+                                // fs.writeFile('../data/alarm.json', json, 'utf8', callback);
+                                // flatListData.push(newAlarm);
+                              
                                 this.props.parentFlatList.refreshFlatList(newAlarm.key);
                                 // alert(newAlarm.key)
                                 this.myModal.current.close();

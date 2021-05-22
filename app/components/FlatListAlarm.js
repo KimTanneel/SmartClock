@@ -3,7 +3,7 @@ import {AppRegistry,FlatList,Image,Text,View,StyleSheet, Switch, Alert, Touchabl
 import flatListData from '../data/FlatListData';
 import Swipeout from 'react-native-swipeout';
 import AddModal from './AddModal';
-
+import alarm from '../data/alarm.json';
 class FlatListItem extends Component{
     constructor(props){
         super(props);
@@ -152,7 +152,7 @@ class FlatListAlarm extends Component{
 
                 </View>
                 <FlatList
-                    data={flatListData}
+                    data={alarm}
                     renderItem={({item,index})=>{
                         return(
                             <FlatListItem item={item} index={index} parentFlatList={this}></FlatListItem>
